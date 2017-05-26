@@ -2,7 +2,10 @@
 
 #include <iostream>
 
+#include "../QSWorld.h"
+
 int main()
 {
   std::cout << "Hello World!" << std::endl;
+  QSWorld world;
 }
