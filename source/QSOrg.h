@@ -20,12 +20,14 @@ public:
   double GetCoopProb() const { return coop_prob; }
   double GetAIProduce() const { return ai_produce; }
   double GetThreshold() const { return threshold; }
+  size_t GetResourceCount() const { return resource_count; }
 
   void SetCoopProb(double _in) { coop_prob = _in; }
   void SetAIProduce(double _in) { ai_produce = _in; }
   void SetThreshold(double _in) { threshold = _in; }
 
   void AddResource(size_t amt) { resource_count += amt; }
+  void UseResource(size_t amt) { resource_count -= amt; }
 
   bool TestProduce(emp::Random & random, double ai_level) {
     if (ai_level < threshold) return false;
