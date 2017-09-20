@@ -50,6 +50,16 @@ public:
     }
     return total_ai / (double) org_count;
   }
+  
+  bool DoMutate() {
+     int mutateProb = random.GetInt(0, 1000);
+     if (mutateProb < 999) {
+     	return false;
+     } else {
+     	return true;
+     }
+  
+  }
 
   void Update(size_t new_resources=10) {
     // Give each organism extra resources.
@@ -90,10 +100,18 @@ public:
       if (world.IsOccupied(i) == false) continue;  // No organism here...
       if (world[i].GetResourceCount() > repro_cost) {
 	world[i].UseResource(repro_cost);
+	
+	// 0.001 probability of mutation and new value from uniform distribution between 0 and 1
+	// note - only one of the two "new" organisms mutates, and the one at this location is 
+	// easiest to change since we don't know where the offspring went
 	world.InsertBirth(world[i], i);
+	if (DoMutate()) {
+	    world[i].SetCoopProb(random.GetDouble());
       }
     }
   }
+  
+}
 
   void Print() {
     world.Print(PrintOrg);
