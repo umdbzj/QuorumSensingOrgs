@@ -29,7 +29,9 @@ public:
     : width(_width), height(_height), ai_radius(_air)
   {
     world.ConfigPop(width,height);
-    world.Insert( QSOrg(0.0, 0.0, 0.0) );
+    world.Insert( QSOrg(0.0, 0.0, 0.6) );  // defector
+    world.Insert( QSOrg(1.0, 0.0, 0.6) );  // wild type
+    world.Insert( QSOrg(1.0, 0.0, 0.0) ); // unconditional cooperator
   }
 
   size_t GetWidth() const { return width; }
